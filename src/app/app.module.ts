@@ -18,6 +18,8 @@ import { ShoppingCartComponent } from './restaurants-detail/shopping-cart/shoppi
 import { MenuItemComponent } from './restaurants-detail/menu-item/menu-item.component';
 import { ReviewsComponent } from './restaurants-detail/reviews/reviews.component';
 import { ShoppingCartService } from './restaurants-detail/shopping-cart/shopping-cart.service';
+import { OrderComponent } from './order/order.component';
+import { FormsModule } from '@angular/forms'
 
 
 
@@ -33,15 +35,17 @@ import { ShoppingCartService } from './restaurants-detail/shopping-cart/shopping
     MenuComponent,
     ShoppingCartComponent,
     MenuItemComponent,
-    ReviewsComponent
+    ReviewsComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
-    RouterModule, 
+    RouterModule,
+    FormsModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [RestaurantService, ShoppingCartService, {provide: LOCALE_ID, useValue:'pt-BR'}],
+  providers: [RestaurantService, ShoppingCartService, { provide: LOCALE_ID, useValue: 'pt-BR' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
