@@ -19,7 +19,9 @@ import { MenuItemComponent } from './restaurants-detail/menu-item/menu-item.comp
 import { ReviewsComponent } from './restaurants-detail/reviews/reviews.component';
 import { ShoppingCartService } from './restaurants-detail/shopping-cart/shopping-cart.service';
 import { OrderComponent } from './order/order.component';
-import { FormsModule } from '@angular/forms'
+import { FormsModule } from '@angular/forms';
+import { InputComponent } from './shared/input/input.component';
+
 
 
 
@@ -36,7 +38,8 @@ import { FormsModule } from '@angular/forms'
     ShoppingCartComponent,
     MenuItemComponent,
     ReviewsComponent,
-    OrderComponent
+    OrderComponent,
+    InputComponent
   ],
   imports: [
     BrowserModule,
