@@ -18,9 +18,20 @@ export class ShoppingCartService {
     addItem(item: MenuItem) {
         let foudItem = this.items.find((mItem) => mItem.menuItem.id === item.id);
         if (foudItem) {
-            foudItem.quantity = foudItem.quantity + 1;
+            this.increaseQty(foudItem);
         } else {
             this.items.push(new CartItemModel(item));
+        }
+    }
+
+    increaseQty(item: CartItemModel) {
+        item.quantity = item.quantity + 1;
+    }
+
+    decreaseQty(item: CartItemModel) {
+        item.quantity = item.quantity - 1;
+        if (item.quantity === 0) {
+            this.removeItem(item);
         }
     }
 
