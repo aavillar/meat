@@ -370,5 +370,23 @@
       "restaurantId": "tasty-treats"
     }
   ],
-  "orders": []
+  "orders": [
+    {
+      "adress": "Rua Pau Brasil",
+      "number": "45",
+      "optional": "",
+      "paymentsOption": "DIN",
+      "orderItem": [
+        {
+          "quantity": 1,
+          "menuItem": "sunday"
+        },
+        {
+          "quantity": 1,
+          "menuItem": "icestd.png"
+        }
+      ],
+      "id": 1
+    }
+  ]
 }
