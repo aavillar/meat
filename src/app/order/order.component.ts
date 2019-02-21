@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { OrderService } from './order.service';
 import { Order, OrderItem } from './order.model';
 import { Router } from '@angular/router';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'mt-order',
@@ -37,7 +37,19 @@ export class OrderComponent implements OnInit {
       number: this.formBuilder.control('', [Validators.required, Validators.pattern(this.numberPattner)]),
       optionaladdress: this.formBuilder.control(''),
       paymentOtion: this.formBuilder.control('', [Validators.required])
-    });
+    }, { validator: OrderComponent.equalsTo });
+  }
+
+  static equalsTo(group: AbstractControl): { [key: string]: boolean } {
+    const email = group.get('email');
+    const emailConfim = group.get('emailConfirmation');
+    if (!email || !emailConfim) {
+      return undefined;
+    }
+    if (email.value !== emailConfim.value) {
+      return { emailsNotMatch: true };
+    }
+    return undefined;
   }
 
   cartItems(): CartItemModel[] {
