@@ -9,15 +9,13 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { RestaurantComponent } from './restaurants/restaurant/restaurant.component';
-import { RestaurantService } from './restaurants/restaurant.service';
 import { RestaurantsDetailComponent } from './restaurants-detail/restaurants-detail.component';
 import { MenuComponent } from './restaurants-detail/menu/menu.component';
 import { ShoppingCartComponent } from './restaurants-detail/shopping-cart/shopping-cart.component';
 import { MenuItemComponent } from './restaurants-detail/menu-item/menu-item.component';
 import { ReviewsComponent } from './restaurants-detail/reviews/reviews.component';
-import { ShoppingCartService } from './restaurants-detail/shopping-cart/shopping-cart.service';
-import { OrderService } from './order/order.service';
 import { OrderSumaryComponent } from './order-sumary/order-sumary.component';
+import { CoreModule } from './core/core.Module';
 
 
 
@@ -40,12 +38,10 @@ import { OrderSumaryComponent } from './order-sumary/order-sumary.component';
     HttpModule,
     RouterModule,
     SharedModule,
-    RouterModule.forRoot(ROUTES)
+    RouterModule.forRoot(ROUTES),
+    CoreModule
   ],
   providers: [
-    RestaurantService,
-    ShoppingCartService,
-    OrderService,
     { provide: LOCALE_ID, useValue: 'pt-BR' }],
   bootstrap: [AppComponent]
 })
