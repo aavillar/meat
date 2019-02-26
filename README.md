@@ -14,6 +14,11 @@
 
 `ng serve` ou `npm start`
 
+### animations
+npm install --save @angular/animations@4.0.0 
+npm install --save web-animations-js
+
+
 ## 2. Iniciando o Backend
 
 ### Instalando o json-server
