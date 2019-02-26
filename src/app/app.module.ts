@@ -15,6 +15,7 @@ import { ShoppingCartComponent } from './restaurants-detail/shopping-cart/shoppi
 import { MenuItemComponent } from './restaurants-detail/menu-item/menu-item.component';
 import { ReviewsComponent } from './restaurants-detail/reviews/reviews.component';
 import { OrderSumaryComponent } from './order-sumary/order-sumary.component';
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations'
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { OrderSumaryComponent } from './order-sumary/order-sumary.component';
     BrowserModule,
     HttpModule,
     RouterModule,
+    BrowserAnimationsModule,
     SharedModule.forRoot(),
     RouterModule.forRoot(ROUTES, {preloadingStrategy: PreloadAllModules})
   ],
