@@ -15,8 +15,6 @@ import { ShoppingCartComponent } from './restaurants-detail/shopping-cart/shoppi
 import { MenuItemComponent } from './restaurants-detail/menu-item/menu-item.component';
 import { ReviewsComponent } from './restaurants-detail/reviews/reviews.component';
 import { OrderSumaryComponent } from './order-sumary/order-sumary.component';
-import { CoreModule } from './core/core.Module';
-
 
 
 @NgModule({
@@ -37,9 +35,8 @@ import { CoreModule } from './core/core.Module';
     BrowserModule,
     HttpModule,
     RouterModule,
-    SharedModule,
-    RouterModule.forRoot(ROUTES),
-    CoreModule
+    SharedModule.forRoot(),
+    RouterModule.forRoot(ROUTES)
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt-BR' }],
