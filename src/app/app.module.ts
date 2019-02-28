@@ -15,7 +15,8 @@ import { ShoppingCartComponent } from './restaurants-detail/shopping-cart/shoppi
 import { MenuItemComponent } from './restaurants-detail/menu-item/menu-item.component';
 import { ReviewsComponent } from './restaurants-detail/reviews/reviews.component';
 import { OrderSumaryComponent } from './order-sumary/order-sumary.component';
-import { BrowserAnimationsModule} from '@angular/platform-browser/animations'
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { NotFoundComponent } from './not-found/not-found.component'
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { BrowserAnimationsModule} from '@angular/platform-browser/animations'
     MenuItemComponent,
     ReviewsComponent,
     OrderSumaryComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
