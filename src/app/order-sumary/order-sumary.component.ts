@@ -5,10 +5,13 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './order-sumary.component.html'
 })
 export class OrderSumaryComponent implements OnInit {
-
+  rated: boolean;
   constructor() { }
 
   ngOnInit() {
   }
 
+  rate() {
+    this.rated = true;
+  }
 }
