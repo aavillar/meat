@@ -1,6 +1,17 @@
 <section class="content-header">
   <h1>
     Todos os Restaurantes
+    <a class="search-link pull-right"><i class="fa fa-search"></i></a>
+    <!--barra de busca-->
+    <div class="row">
+      <div class="col-xs-12">
+        <form>
+          <div class="form-group">
+            <input  type="text" class="form-control" placeholder="O que você está procurando?">
+          </div> 
+        </form>
+      </div>
+    </div>
   </h1>
 </section>
 
@@ -8,7 +19,7 @@
 <section class="content">
 
   <div class="row">
-    <div  *ngFor="let item of restaurants" class="col-sm-6 col-xs-12">
+    <div *ngFor="let item of restaurants" class="col-sm-6 col-xs-12">
       <mt-restaurant [restaurant]=item></mt-restaurant>
     </div>
   </div>
