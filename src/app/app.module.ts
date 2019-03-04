@@ -17,6 +17,7 @@ import { ReviewsComponent } from './restaurants-detail/reviews/reviews.component
 import { OrderSumaryComponent } from './order-sumary/order-sumary.component';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NotFoundComponent } from './not-found/not-found.component'
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 
 @NgModule({
@@ -42,7 +43,7 @@ import { NotFoundComponent } from './not-found/not-found.component'
     SharedModule.forRoot(),
     RouterModule.forRoot(ROUTES, {preloadingStrategy: PreloadAllModules})
   ],
-  providers: [
+  providers: [ {provide: LocationStrategy, useClass: HashLocationStrategy},
     { provide: LOCALE_ID, useValue: 'pt-BR' }],
   bootstrap: [AppComponent]
 })
