@@ -24,6 +24,9 @@
     <div *ngFor="let item of restaurants" class="col-sm-6 col-xs-12">
       <mt-restaurant [restaurant]=item></mt-restaurant>
     </div>
+    <div *ngIf="restaurants?.length === 0" class="col-xs-12">
+      <p>Não foram encontrados ítens para a sua busca!</p>
+    </div>
   </div>
 
 </section>

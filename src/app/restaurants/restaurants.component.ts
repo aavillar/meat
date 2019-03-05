@@ -1,3 +1,4 @@
+
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { RestaurantService } from './restaurant.service';
 import { Component, OnInit } from '@angular/core';
@@ -5,7 +6,9 @@ import { Restaurant } from './restaurant/restaurant.model';
 import { trigger, state, transition, style, animate } from '@angular/animations';
 import  'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
-
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/Observable/from';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'mt-restaurants',
@@ -46,7 +49,8 @@ export class RestaurantsComponent implements OnInit {
     this.searchControl.valueChanges
       .debounceTime(500) /* espera 500ms de intervalo entre a digitação para liberar a busca */
       .distinctUntilChanged() /*libera a consulta apenas se houver diferença entre a nova digitação e a última*/
-      .switchMap(x => this.restaurantService.restaurants(x))
+      .switchMap(x => this.restaurantService.restaurants(x)
+      .catch(error => Observable.from([])))
       .subscribe(restaurantes => this.restaurants = restaurantes);
 
     this.restaurantService.restaurants()
