@@ -5,9 +5,10 @@
     <!--barra de busca-->
     <div class="row">
       <div class="col-xs-12 search-bar" [@toggleSerach]="searchBarToggle">
-        <form>
+        <form [formGroup]="searchForm">
           <div class="form-group">
-            <input  type="text" class="form-control" placeholder="O que você está procurando?">
+            <input  type="text" class="form-control" placeholder="O que você está procurando?"
+            formControlName="searchControl">
           </div> 
         </form>
       </div>

@@ -1,3 +1,4 @@
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { RestaurantService } from './restaurant.service';
 import { Component, OnInit } from '@angular/core';
 import { Restaurant } from './restaurant/restaurant.model';
@@ -24,15 +25,29 @@ import { trigger, state, transition, style, animate } from '@angular/animations'
 })
 export class RestaurantsComponent implements OnInit {
 
+  searchForm: FormGroup;
+  searchControl: FormControl;
+
   searchBarToggle = 'hidden'
-  constructor(private restaurantService: RestaurantService) {
+  constructor(private restaurantService: RestaurantService,
+    private fb: FormBuilder) {
 
   }
   restaurants: Restaurant[];
   ngOnInit() {
+    this.searchControl = this.fb.control('');
+    this.searchForm = this.fb.group({
+      searchControl: this.searchControl
+    });
+
+
+    this.searchControl.valueChanges
+      .switchMap(x => this.restaurantService.restaurants(x))
+      .subscribe(restaurantes => this.restaurants = restaurantes);
+
     this.restaurantService.restaurants()
-      .subscribe(x => {
-        this.restaurants = x;
+      .subscribe(restaurantes => {
+        this.restaurants = restaurantes;
       });
   }
 
