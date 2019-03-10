@@ -1,3 +1,4 @@
+import { LoginComponent } from './security/login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ReviewsComponent } from './restaurants-detail/reviews/reviews.component';
 import { MenuComponent } from './restaurants-detail/menu/menu.component';
@@ -10,6 +11,7 @@ import { OrderSumaryComponent } from './order-sumary/order-sumary.component';
 
 export const ROUTES: Routes = [
     { path: '', component: HomeComponent },
+    { path: 'login', component: LoginComponent},
     { path: 'about', loadChildren: './about/about.module#AboutModule' },
     {
         path: 'restaurants/:id', component: RestaurantsDetailComponent,

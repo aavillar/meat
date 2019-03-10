@@ -18,6 +18,7 @@ import { OrderSumaryComponent } from './order-sumary/order-sumary.component';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NotFoundComponent } from './not-found/not-found.component'
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { LoginComponent } from './security/login/login.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
     ReviewsComponent,
     OrderSumaryComponent,
     NotFoundComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
