@@ -1,3 +1,4 @@
+import { LoginService } from './../security/login/login.service';
 import { NotificationService } from './messages/notification.service';
 import { OrderService } from './../order/order.service';
 import { ShoppingCartService } from './../restaurants-detail/shopping-cart/shopping-cart.service';
@@ -25,10 +26,14 @@ import { SnackbarComponent } from './messages/snackbar/snackbar.component';
     ]
 })
 export class SharedModule {
-static forRoot(): ModuleWithProviders {
-    return {
-        ngModule: SharedModule,
-        providers:[RestaurantService, ShoppingCartService, OrderService, NotificationService]
+    static forRoot(): ModuleWithProviders {
+        return {
+            ngModule: SharedModule,
+            providers: [RestaurantService,
+                ShoppingCartService,
+                OrderService,
+                NotificationService,
+                LoginService]
+        }
     }
-}
 }
