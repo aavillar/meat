@@ -4,13 +4,15 @@ import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from "@angular/core";
 import 'rxjs/add/operator/do';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class LoginService {
 
     user: User;
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient,
+        private route: Router) {
     }
 
     login(email: string, password: string): Observable<User> {
@@ -20,5 +22,10 @@ export class LoginService {
 
     isLoggegIn(): boolean {
         return this.user !== undefined;
+    }
+
+
+    handleLogin(path?: string) {
+        this.route.navigate(['/login', path]);
     }
 }

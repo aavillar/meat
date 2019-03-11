@@ -1,3 +1,4 @@
+import { LoggedinGuards } from './../security/loggedin.guards';
 import { LoginService } from './../security/login/login.service';
 import { NotificationService } from './messages/notification.service';
 import { OrderService } from './../order/order.service';
@@ -33,7 +34,8 @@ export class SharedModule {
                 ShoppingCartService,
                 OrderService,
                 NotificationService,
-                LoginService]
+                LoginService,
+                LoggedinGuards]
         }
     }
 }

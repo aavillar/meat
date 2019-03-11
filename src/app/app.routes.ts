@@ -8,9 +8,11 @@ import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { RestaurantsDetailComponent } from './restaurants-detail/restaurants-detail.component';
 
 import { OrderSumaryComponent } from './order-sumary/order-sumary.component';
+import { LoggedinGuards } from './security/loggedin.guards';
 
 export const ROUTES: Routes = [
     { path: '', component: HomeComponent },
+    { path: 'login/:to', component: LoginComponent},
     { path: 'login', component: LoginComponent},
     { path: 'about', loadChildren: './about/about.module#AboutModule' },
     {
@@ -21,7 +23,8 @@ export const ROUTES: Routes = [
             { path: 'reviews', component: ReviewsComponent }
         ]
     },
-    { path: 'order', loadChildren: './order/order.module#OrderModule' },
+    { path: 'order', loadChildren: './order/order.module#OrderModule',
+        canLoad: [LoggedinGuards] },
     { path: 'order-sumary', component: OrderSumaryComponent },
     { path: 'restaurantes', component: RestaurantsComponent },
     { path: '**', component: NotFoundComponent }
