@@ -27,14 +27,14 @@ export class LoginComponent implements OnInit {
       email: this.fb.control('', [Validators.required, Validators.email]),
       password: this.fb.control('', [Validators.required])
     })
-    this.navigateTo = this.activatedRoute.snapshot.params['to'] || '/';
+    this.navigateTo = this.activatedRoute.snapshot.params['to'] || btoa('/');
   }
 
   login() {
     this.loginService.login(this.loginForm.value.email, this.loginForm.value.password)
       .subscribe(x => this.notificationService.notify(`Bem vindo(a) ${x.name}`),
       response => this.notificationService.notify(response.error.message),
-      () => this.route.navigate([this.navigateTo]));
+      () => this.route.navigate([atob(this.navigateTo)]));
   }
 
 }

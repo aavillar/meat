@@ -26,6 +26,6 @@ export class LoginService {
 
 
     handleLogin(path?: string) {
-        this.route.navigate(['/login', path]);
+        this.route.navigate(['/login', btoa(path)]);
     }
 }
