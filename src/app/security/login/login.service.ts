@@ -4,15 +4,19 @@ import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from "@angular/core";
 import 'rxjs/add/operator/do';
-import { Router } from '@angular/router';
+import 'rxjs/add/operator/filter';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Injectable()
 export class LoginService {
 
     user: User;
+    lastUrl: string;
 
     constructor(private http: HttpClient,
         private route: Router) {
+        this.route.events.filter(e => e instanceof NavigationEnd)
+            .subscribe((e: NavigationEnd) => this.lastUrl = e.url)/*pega a ultima url acessada*/
     }
 
     login(email: string, password: string): Observable<User> {
@@ -20,12 +24,16 @@ export class LoginService {
             .do(x => this.user = x);
     }
 
+    logout() {
+        this.user = undefined;
+    }
+
     isLoggegIn(): boolean {
         return this.user !== undefined;
     }
 
 
-    handleLogin(path?: string) {
+    handleLogin(path: string =  this.lastUrl) {
         this.route.navigate(['/login', btoa(path)]);
     }
 }
