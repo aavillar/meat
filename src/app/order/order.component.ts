@@ -5,6 +5,7 @@ import { OrderService } from './order.service';
 import { Order, OrderItem } from './order.model';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import 'rxjs/add/operator/do'
 
 @Component({
   selector: 'mt-order',
@@ -15,6 +16,7 @@ export class OrderComponent implements OnInit {
   emailPattner = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
   numberPattner = /^[0-9]*$/
   orderForm: FormGroup;
+  orderId: string;
   paymentsOption: RadioOptionModel[] = [
     { label: 'Dinheiro', value: 'DIN' },
     { label: 'Cartão de Débito', value: 'DEB' },
@@ -76,9 +78,14 @@ export class OrderComponent implements OnInit {
     order.orderItem = this.cartItems()
       .map((item: CartItemModel) => new OrderItem(item.quantity, item.menuItem.id));
     this.orderService.checkOrder(order)
+      .do((orderId: string) => this.orderId = orderId)
       .subscribe((orderId) => {
         this.router.navigate(['/order-sumary']);
         this.orderService.clear();
       })
+  }
+
+  isOrderComplete(): boolean {
+    return this.orderId !== undefined;
   }
 }
