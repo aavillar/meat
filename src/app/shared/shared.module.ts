@@ -12,6 +12,8 @@ import { RatingComponent } from './rating/rating.component';
 import { CommonModule } from '@angular/common';
 import { RestaurantService } from 'app/restaurants/restaurant.service';
 import { SnackbarComponent } from './messages/snackbar/snackbar.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from 'app/security/auth.interceptor';
 
 
 
@@ -31,7 +33,8 @@ export class SharedModule {
     static forRoot(): ModuleWithProviders {
         return {
             ngModule: SharedModule,
-            providers: [RestaurantService,
+            providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+                RestaurantService,
                 ShoppingCartService,
                 OrderService,
                 NotificationService,
