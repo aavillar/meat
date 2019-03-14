@@ -1,7 +1,7 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AplicationErrorHandler } from './app.error.handler';
 import { SharedModule } from './shared/shared.module';
 import { ROUTES } from './app.routes';
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID, ErrorHandler } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, PreloadAllModules } from '@angular/router';
@@ -16,11 +16,15 @@ import { ShoppingCartComponent } from './restaurants-detail/shopping-cart/shoppi
 import { MenuItemComponent } from './restaurants-detail/menu-item/menu-item.component';
 import { ReviewsComponent } from './restaurants-detail/reviews/reviews.component';
 import { OrderSumaryComponent } from './order-sumary/order-sumary.component';
-import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 import { NotFoundComponent } from './not-found/not-found.component'
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { LocationStrategy, HashLocationStrategy, registerLocaleData } from '@angular/common';
 import { LoginComponent } from './security/login/login.component';
 import { UserDetailComponent } from './header/user-detail/user-detail.component';
+import { BrowserModule } from '@angular/platform-browser';
+import localePt from '@angular/common/locales/pt';
+
+registerLocaleData(localePt, 'pt');
 
 
 @NgModule({
@@ -49,7 +53,7 @@ import { UserDetailComponent } from './header/user-detail/user-detail.component'
     RouterModule.forRoot(ROUTES, {preloadingStrategy: PreloadAllModules})
   ],
   providers: [ {provide: LocationStrategy, useClass: HashLocationStrategy},
-    { provide: LOCALE_ID, useValue: 'pt-BR' },
+    { provide: LOCALE_ID, useValue: 'pt' },
     { provide: ErrorHandler , useClass: AplicationErrorHandler}],
   bootstrap: [AppComponent]
 })
