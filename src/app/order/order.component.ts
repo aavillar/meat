@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { OrderService } from './order.service';
 import { Order, OrderItem } from './order.model';
 import { Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl } from '@angular/forms';
 import 'rxjs/add/operator/do'
 
 @Component({
@@ -31,15 +31,36 @@ export class OrderComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    this.orderForm = this.formBuilder.group({
-      name: this.formBuilder.control('', [Validators.required, Validators.minLength(5)]),
+    /*evento blur em apenas um campo*/
+   /* this.orderForm = this.formBuilder.group({
+      name: new FormControl('',
+        {
+          validators: [Validators.required, Validators.minLength(5)],
+          updateOn: 'blur'
+        }
+      ),
       email: this.formBuilder.control('', [Validators.required, Validators.pattern(this.emailPattner)]),
       emailConfirmation: this.formBuilder.control('', [Validators.required, Validators.pattern(this.emailPattner)]),
       address: this.formBuilder.control('', [Validators.required, Validators.minLength(5)]),
       number: this.formBuilder.control('', [Validators.required, Validators.pattern(this.numberPattner)]),
       optionaladdress: this.formBuilder.control(''),
       paymentOtion: this.formBuilder.control('', [Validators.required])
-    }, { validator: OrderComponent.equalsTo });
+    }, { validator: OrderComponent.equalsTo });*/
+
+    /*Evento blur em todo o form */
+    this.orderForm = new FormGroup({
+      name: new FormControl('',
+        {
+          validators: [Validators.required, Validators.minLength(5)]
+        }
+      ),
+      email: this.formBuilder.control('', [Validators.required, Validators.pattern(this.emailPattner)]),
+      emailConfirmation: this.formBuilder.control('', [Validators.required, Validators.pattern(this.emailPattner)]),
+      address: this.formBuilder.control('', [Validators.required, Validators.minLength(5)]),
+      number: this.formBuilder.control('', [Validators.required, Validators.pattern(this.numberPattner)]),
+      optionaladdress: this.formBuilder.control(''),
+      paymentOtion: this.formBuilder.control('', [Validators.required])
+    }, { validators: [OrderComponent.equalsTo],  updateOn: 'blur' });
   }
 
   static equalsTo(group: AbstractControl): { [key: string]: boolean } {
